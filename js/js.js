@@ -1,35 +1,31 @@
-let thisSecond;
-let thisMinute;
-let thisHour;
+let thisSecond = +(Date().charAt(22) + Date().charAt(23));
+let thisMinute = Date().charAt(19) + Date().charAt(20);
+let thisHour = +(Date().charAt(16) + Date().charAt(17)) + thisMinute / 60 + thisSecond / 3600;
+
 // запускаем секундную стрелку
-console.log(Date());
+
 function rotateSecondHand() {
-	thisSecond = Date().charAt(22) + Date().charAt(23);
+	thisSecond = thisSecond + 0.01;
 	let secondHand = document.getElementById('secondHand');
 	let secondDeg = thisSecond * 6 + 90;
 	secondHand.setAttribute("style", `transform:rotate(${secondDeg}deg)`);
 };
-rotateSecondHand();
-setInterval(rotateSecondHand, 100);
+setInterval(rotateSecondHand, 10);
 
 //запускаем минутную стрелку
 
 function rotateMinuteHand() {
-	thisMinute = Date().charAt(19) + Date().charAt(20);
 	let MinuteHand = document.getElementById('minuteHand');
-	let MinuteDeg = thisMinute * 6 + 90 + thisSecond / 10;
+	MinuteDeg = thisMinute * 6 + 90 + thisSecond / 10;
 	MinuteHand.setAttribute("style", `transform:rotate(${MinuteDeg}deg)`);
 };
-rotateMinuteHand();
-setInterval(rotateMinuteHand, 100);
+setInterval(rotateMinuteHand, 10);
 
 //запускаем часовую стрелку
 
 function rotateHourHand() {
-	thisHour = Date().charAt(16) + Date().charAt(17);
 	let hourHand = document.getElementById('hourHand');
-	let hourDeg = thisHour * 30 + thisSecond * 6 / 3600 + 90;
+	let hourDeg = thisHour * 30 + 90 + thisSecond * 30 / 3600;
 	hourHand.setAttribute("style", `transform:rotate(${hourDeg}deg)`);
 };
-rotateHourHand();
-setInterval(rotateHourHand, 100);
+setInterval(rotateHourHand, 10);
